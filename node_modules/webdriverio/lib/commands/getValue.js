@@ -1,6 +1,6 @@
 /**
  *
- * Get the value of a `<textarea>` or text `<input>` found by given selector.
+ * Get the value of a `<textarea>`, `<select>` or text `<input>` found by given selector.
  *
  * <example>
     :index.html
@@ -16,8 +16,8 @@
  * </example>
  *
  * @alias browser.getValue
- * @param   {String} selector input or textarea element
- * @returns {String}          requested input value
+ * @param   {String} selector input, textarea, or select element
+ * @return {String}          requested input value
  * @uses protocol/elements, protocol/elementIdAttribute
  * @type property
  *

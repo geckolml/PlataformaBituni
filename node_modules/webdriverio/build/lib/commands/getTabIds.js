@@ -23,7 +23,7 @@ Object.defineProperty(exports, "__esModule", {
  * </example>
  *
  * @alias browser.getTabIds
- * @returns {String[]} a list of window handles
+ * @return {String[]} a list of window handles
  * @uses protocol/windowHandles
  * @type window
  *

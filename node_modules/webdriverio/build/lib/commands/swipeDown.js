@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  * @alias browser.swipeDown
  * @param {String} selector  element to swipe on
+ * @param {Number=} yoffset    y offset of swipe gesture (in pixels or relative units)
  * @param {Number} speed     number of pixels go per second
  * @uses mobile/swipe
  * @type mobile

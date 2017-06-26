@@ -1,6 +1,7 @@
 /**
  *
- * Return true or false if the selected DOM-element currently has focus.
+ * Return true or false if the selected DOM-element currently has focus. If the selector matches
+ * multiple elements, it will return true if one of the elements has focus.
  *
  * <example>
     :index.html
@@ -19,27 +20,39 @@
  * </example>
  *
  * @alias browser.hasFocus
- * @param {String} selector   select active element
- * @returns {Boolean}         true if element has focus
- * @uses protocol/execute
+ * @param {String} selector   selector for element(s) to test for focus
+ * @return {Boolean}         true if one of the matching elements has focus
+ * @uses protocol/execute protocol/elements
  * @type state
  *
  */
 
-let hasFocus = function (selector) {
-    let result = this.execute(function (selector) {
-        var focused = document.activeElement
+import { RuntimeError } from '../utils/ErrorHandler'
 
-        if (!focused || focused === document.body) {
-            return false
-        } else if (document.querySelector) {
-            return focused === document.querySelector(selector)
+let hasFocus = function (selector) {
+    return this.unify(this.elements(selector).then((res) => {
+        /**
+         * check if element was found and throw error if not
+         */
+        if (!res.value || !res.value.length) {
+            throw new RuntimeError(7)
         }
 
-        return false
-    }, selector)
+        return res.value
+    }).then((elements) => {
+        return this.execute(function (elemArray) {
+            var focused = document.activeElement
+            if (!focused) {
+                return false
+            }
 
-    return result.then(result => result.value)
+            return elemArray
+                .filter((elem) => focused === elem)
+                .length > 0
+        }, elements)
+    }), {
+        extractValue: true
+    })
 }
 
 export default hasFocus

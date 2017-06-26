@@ -12,6 +12,8 @@ var _getIterator2 = require('babel-runtime/core-js/get-iterator');
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
 
+exports.default = elementIdValue;
+
 var _constants = require('../helpers/constants');
 
 var _ErrorHandler = require('../utils/ErrorHandler');
@@ -30,7 +32,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  */
 
-var elementIdValue = function elementIdValue(id, value) {
+function elementIdValue(id, value) {
     var key = [];
 
     if (typeof id !== 'string' && typeof id !== 'number') {
@@ -71,12 +73,11 @@ var elementIdValue = function elementIdValue(id, value) {
         throw new _ErrorHandler.ProtocolError('number or type of arguments don\'t agree with elementIdValue protocol command');
     }
 
-    // ToDo change this according to Webdriver spec
-    // /session/{session id}/element/{element id}/sendKeys
     return this.requestHandler.create('/session/:sessionId/element/' + id + '/value', {
-        'value': key
+        value: key, // json wire conform way: `['f', 'o', 'o']`
+        text: key.join('') // webdriver conform way: `foo`
     });
-};
+}
 
 /*!
  * check for unicode character or split string into literals
@@ -86,6 +87,4 @@ var elementIdValue = function elementIdValue(id, value) {
 function checkUnicode(value) {
     return _constants.UNICODE_CHARACTERS.hasOwnProperty(value) ? [_constants.UNICODE_CHARACTERS[value]] : (0, _from2.default)(value);
 }
-
-exports.default = elementIdValue;
 module.exports = exports['default'];

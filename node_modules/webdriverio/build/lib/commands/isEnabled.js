@@ -78,7 +78,7 @@ var isEnabled = function isEnabled(selector) {
     *
     * @alias browser.isEnabled
     * @param   {String}             selector  DOM-element
-    * @returns {Boolean|Boolean[]}            true if element(s)* (is|are) enabled
+    * @return {Boolean|Boolean[]}            true if element(s)* (is|are) enabled
     * @uses protocol/elements, protocol/elementIdEnabled
     * @type state
     *

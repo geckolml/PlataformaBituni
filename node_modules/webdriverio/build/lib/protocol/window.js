@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = window;
 /**
  *
  * Protocol binding to handle with tabs in the browser.
@@ -22,13 +23,13 @@ Object.defineProperty(exports, "__esModule", {
  *
  * @param {String=} windowHandle the window to change focus to
  *
- * @see  https://w3c.github.io/webdriver/webdriver-spec.html#dfn-switch-to-window
- * @see  https://w3c.github.io/webdriver/webdriver-spec.html#dfn-close-window
+ * @see  https://w3c.github.io/webdriver/webdriver-spec.html#switch-to-window
+ * @see  https://w3c.github.io/webdriver/webdriver-spec.html#close-window
  * @type protocol
  *
  */
 
-var window = function window(windowHandle) {
+function window(windowHandle) {
     var data = {};
     var requestOptions = {
         path: '/session/:sessionId/window',
@@ -36,12 +37,13 @@ var window = function window(windowHandle) {
     };
 
     if (typeof windowHandle === 'string') {
-        data = { name: windowHandle };
+        data = {
+            name: windowHandle, // json wire conform
+            handle: windowHandle // webdriver conform
+        };
         requestOptions.method = 'POST';
     }
 
     return this.requestHandler.create(requestOptions, data);
-};
-
-exports.default = window;
+}
 module.exports = exports['default'];

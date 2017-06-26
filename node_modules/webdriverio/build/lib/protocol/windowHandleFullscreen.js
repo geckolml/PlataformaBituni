@@ -18,12 +18,12 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var windowHandleMaximize = function windowHandleMaximize() {
+var windowHandleFullscreen = function windowHandleFullscreen() {
     return this.requestHandler.create({
         path: '/session/:sessionId/window/fullscreen',
         method: 'POST'
     });
 };
 
-exports.default = windowHandleMaximize;
+exports.default = windowHandleFullscreen;
 module.exports = exports['default'];

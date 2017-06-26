@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = toggleLocationServices;
 /**
  *
  * Switch the state (enabled/disabled) of the location service.
@@ -17,12 +18,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var toggleLocationServices = function toggleLocationServices() {
+function toggleLocationServices() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/toggle_location_services',
         method: 'POST'
     });
-};
-
-exports.default = toggleLocationServices;
+}
 module.exports = exports['default'];

@@ -78,7 +78,7 @@ var isSelected = function isSelected(selector) {
     *
     * @alias browser.isSelected
     * @param   {String}             selector  option element or input of type checkbox or radio
-    * @returns {Boolean|Boolean[]}            true if element is selected
+    * @return {Boolean|Boolean[]}            true if element is selected
     * @uses protocol/elements, protocol/elementIdSelected
     * @type state
     *

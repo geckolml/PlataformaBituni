@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = orientation;
 /**
  *
  * Protocol bindings for all mobile orientation operations. (Not part of the official Webdriver specification).
@@ -23,7 +24,7 @@ Object.defineProperty(exports, "__esModule", {
  * </example>
  *
  * @param   {String=} deviceOrientation  The new browser orientation as defined in ScreenOrientation: `{LANDSCAPE|PORTRAIT}`
- * @returns {String}                     device orientation (`LANDSCAPE/PORTRAIT`)
+ * @return {String}                     device orientation (`LANDSCAPE/PORTRAIT`)
  *
  * @see  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidorientation
  * @type mobile
@@ -31,7 +32,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var orientation = function orientation(deviceOrientation) {
+function orientation(deviceOrientation) {
     var data = {};
 
     if (typeof deviceOrientation === 'string') {
@@ -39,7 +40,5 @@ var orientation = function orientation(deviceOrientation) {
     }
 
     return this.requestHandler.create('/session/:sessionId/orientation', data);
-};
-
-exports.default = orientation;
+}
 module.exports = exports['default'];

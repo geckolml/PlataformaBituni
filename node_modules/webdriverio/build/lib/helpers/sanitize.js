@@ -40,6 +40,10 @@ var sanitizeString = function sanitizeString(str) {
  * @param {Object} caps  Selenium capabilities
  */
 var caps = function caps(_caps) {
+    if (!_caps) {
+        return '';
+    }
+
     var result = void 0;
 
     /**
@@ -62,6 +66,10 @@ var caps = function caps(_caps) {
  * @param  {Array} args arguments object
  */
 var args = function args(_args) {
+    if (!_args || !Array.isArray(_args)) {
+        return '';
+    }
+
     return _args.map(function (arg) {
         if (typeof arg === 'function' || typeof arg === 'string' && arg.indexOf('return (function') === 0) {
             return '<Function>';
@@ -101,7 +109,7 @@ var limit = function limit(val) {
             }
 
             if (val.length > STRINGLIMIT) {
-                return val.substr(0, STRINGTRUNCATE) + ' ... (' + (val.length - STRINGTRUNCATE) + ' more bytes)';
+                return val.substr(0, STRINGTRUNCATE) + (' ... (' + (val.length - STRINGTRUNCATE) + ' more bytes)');
             }
 
             return val;

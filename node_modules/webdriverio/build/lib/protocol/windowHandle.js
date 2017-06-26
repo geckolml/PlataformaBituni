@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = windowHandle;
 /**
  * Retrieve the current window handle.
  *
@@ -25,17 +26,25 @@ Object.defineProperty(exports, "__esModule", {
     });
  * </example>
  *
- * @returns {String} the current window handle
+ * @return {String} the current window handle
  *
  * @see https://w3c.github.io/webdriver/webdriver-spec.html#dfn-get-window-handle
  * @type protocol
  *
  */
 
-var windowHandle = function windowHandle() {
-    // ToDo fix path according to new Webdriver standard
-    return this.requestHandler.create('/session/:sessionId/window_handle');
-};
+function windowHandle() {
+    var _this = this;
 
-exports.default = windowHandle;
+    return this.requestHandler.create('/session/:sessionId/window_handle').catch(function (err) {
+        /**
+         * jsonwire command not supported try webdriver endpoint
+         */
+        if (err.message.match(/did not match a known command/)) {
+            return _this.requestHandler.create('/session/:sessionId/window');
+        }
+
+        throw err;
+    });
+}
 module.exports = exports['default'];

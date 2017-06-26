@@ -30,7 +30,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  * @alias browser.getCookie
  * @param {String=} name name of requested cookie
- * @returns {Object|null} requested cookie if existing
+ * @return {Object|null} requested cookie if existing
  * @uses protocol/cookie
  * @type cookie
  *

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = strings;
 /**
  *
  * Returns application strings of the application in a specific language.
@@ -26,12 +27,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var strings = function strings(language) {
+function strings(language) {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/app/strings',
         method: 'POST'
     }, { language: language });
-};
-
-exports.default = strings;
+}
 module.exports = exports['default'];

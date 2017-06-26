@@ -34,10 +34,15 @@ exports.default = function (condition, timeout, timeoutMsg, interval) {
     var timer = new _Timer2.default(interval, timeout, fn, true, isSync);
 
     return timer.catch(function (e) {
-        if (e === 'timeout' && typeof timeoutMsg === 'string') {
+        if (e.message === 'timeout' && typeof timeoutMsg === 'string') {
             throw new _ErrorHandler.WaitUntilTimeoutError(timeoutMsg);
         }
-        throw new _ErrorHandler.WaitUntilTimeoutError('Promise was rejected with the following reason: ' + e);
+
+        if (e.type === 'NoSuchElement') {
+            throw new _ErrorHandler.WaitUntilTimeoutError(e.message);
+        }
+
+        throw new _ErrorHandler.WaitUntilTimeoutError('Promise was rejected with the following reason: ' + e.message);
     });
 };
 

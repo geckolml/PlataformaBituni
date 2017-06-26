@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = currentActivity;
 /**
  *
  * Receive the current activity on an Android device.
@@ -21,9 +22,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var currentActivity = function currentActivity() {
+function currentActivity() {
     return this.requestHandler.create('/session/:sessionId/appium/device/current_activity');
-};
-
-exports.default = currentActivity;
+}
 module.exports = exports['default'];

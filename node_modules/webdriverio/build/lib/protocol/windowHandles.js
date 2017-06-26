@@ -29,7 +29,7 @@ Object.defineProperty(exports, "__esModule", {
     });
  * </example>
  *
- * @returns {String[]} a list of window handles
+ * @return {String[]} a list of window handles
  *
  * @see https://w3c.github.io/webdriver/webdriver-spec.html#dfn-get-window-handles
  * @type protocol
@@ -37,8 +37,18 @@ Object.defineProperty(exports, "__esModule", {
  */
 
 var windowHandles = function windowHandles() {
-    // ToDo fix path according to new Webdriver standard
-    return this.requestHandler.create('/session/:sessionId/window_handles');
+    var _this = this;
+
+    return this.requestHandler.create('/session/:sessionId/window_handles').catch(function (err) {
+        /**
+         * jsonwire command not supported try webdriver endpoint
+         */
+        if (err.message.match(/did not match a known command/)) {
+            return _this.requestHandler.create('/session/:sessionId/window/handles');
+        }
+
+        throw err;
+    });
 };
 
 exports.default = windowHandles;

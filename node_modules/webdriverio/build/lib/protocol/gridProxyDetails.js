@@ -3,10 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = gridProxyDetails;
 
 var _ErrorHandler = require('../utils/ErrorHandler');
 
-var gridProxyDetails = function gridProxyDetails(proxyId) {
+function gridProxyDetails(proxyId) {
     /*!
      * parameter check
      */
@@ -20,36 +21,35 @@ var gridProxyDetails = function gridProxyDetails(proxyId) {
         requiresSession: false,
         gridCommand: true
     });
-}; /**
-    *
-    * Get the details of the Selenium Grid node running a session
-    *
-    * <example>
-       :grid.js
-       it('should get grid proxy details', function () {
-           var details = browser.gridProxyDetails(proxyId)
-           console.log(details);
-           // {
-           //     success: true,
-           //     msg: "proxy found !",
-           //     id: "MacMiniA10",
-           //     request: {
-           //         ...
-           //         configuration: {
-           //             ...
-           //         },
-           //         capabilities: [
-           //             {
-           //                 ...
-           //             }
-           //         ]
-           //     }
-           // }
-       });
-    * </example>
-    *
-    * @type grid
-    */
+} /**
+   *
+   * Get the details of the Selenium Grid node running a session
+   *
+   * <example>
+      :grid.js
+      it('should get grid proxy details', function () {
+          var details = browser.gridProxyDetails(proxyId)
+          console.log(details);
+          // {
+          //     success: true,
+          //     msg: "proxy found !",
+          //     id: "MacMiniA10",
+          //     request: {
+          //         ...
+          //         configuration: {
+          //             ...
+          //         },
+          //         capabilities: [
+          //             {
+          //                 ...
+          //             }
+          //         ]
+          //     }
+          // }
+      });
+   * </example>
+   *
+   * @type grid
+   */
 
-exports.default = gridProxyDetails;
 module.exports = exports['default'];

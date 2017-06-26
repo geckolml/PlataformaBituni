@@ -8,9 +8,42 @@ var _getIterator2 = require('babel-runtime/core-js/get-iterator');
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
 
-var _ErrorHandler = require('../utils/ErrorHandler');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ *
+ * Wait for an element (selected by css selector) for the provided amount of
+ * milliseconds to be (in)visible. If multiple elements get queryied by given
+ * selector, it returns true (or false if reverse flag is set) if at least one
+ * element is visible.
+ *
+ * <example>
+    :index.html
+    <div id="elem" style="visibility: hidden;">Hello World!</div>
+    <script type="text/javascript">
+        setTimeout(function () {
+            document.getElementById('elem').style.visibility = 'visible';
+        }, 2000);
+    </script>
+
+    :waitForVisibleExample.js
+    it('should detect when element is visible', function () {
+        browser.waitForVisible('#elem', 3000);
+
+        // same as
+        elem = $('#elem');
+        elem.waitForVisible(3000)
+    });
+ * </example>
+ *
+ * @alias browser.waitForVisible
+ * @param {String}   selector element to wait for
+ * @param {Number=}  ms       time in ms (default: 500)
+ * @param {Boolean=} reverse  if true it waits for the opposite (default: false)
+ * @uses utility/waitUntil, state/isVisible
+ * @type utility
+ *
+ */
 
 var waitForVisible = function waitForVisible(selector, ms, reverse) {
     var _this = this;
@@ -32,6 +65,9 @@ var waitForVisible = function waitForVisible(selector, ms, reverse) {
     if (typeof ms !== 'number') {
         ms = this.options.waitforTimeout;
     }
+
+    var isReversed = reverse ? '' : 'not';
+    var errorMsg = 'element ("' + (selector || this.lastResult.selector) + '") still ' + isReversed + ' visible after ' + ms + 'ms';
 
     return this.waitUntil(function () {
         return _this.isVisible(selector).then(function (isVisible) {
@@ -71,49 +107,8 @@ var waitForVisible = function waitForVisible(selector, ms, reverse) {
 
             return result !== reverse;
         });
-    }, ms).catch(function (e) {
-        selector = selector || _this.lastResult.selector;
-
-        if ((0, _ErrorHandler.isTimeoutError)(e)) {
-            var isReversed = reverse ? '' : 'not';
-            throw new _ErrorHandler.WaitUntilTimeoutError('element (' + selector + ') still ' + isReversed + ' visible after ' + ms + 'ms');
-        }
-        throw e;
-    });
-}; /**
-    *
-    * Wait for an element (selected by css selector) for the provided amount of
-    * milliseconds to be (in)visible. If multiple elements get queryied by given
-    * selector, it returns true (or false if reverse flag is set) if at least one
-    * element is visible.
-    *
-    * <example>
-       :index.html
-       <div id="elem" style="visibility: hidden;">Hello World!</div>
-       <script type="text/javascript">
-           setTimeout(function () {
-               document.getElementById('elem').style.visibility = 'visible';
-           }, 2000);
-       </script>
-   
-       :waitForVisibleExample.js
-       it('should detect when element is visible', function () {
-           browser.waitForVisible('#elem', 3000);
-   
-           // same as
-           elem = $('#elem');
-           elem.waitForVisible(3000)
-       });
-    * </example>
-    *
-    * @alias browser.waitForVisible
-    * @param {String}   selector element to wait for
-    * @param {Number=}  ms       time in ms (default: 500)
-    * @param {Boolean=} reverse  if true it waits for the opposite (default: false)
-    * @uses utility/waitUntil, state/isVisible
-    * @type utility
-    *
-    */
+    }, ms, errorMsg);
+};
 
 exports.default = waitForVisible;
 module.exports = exports['default'];

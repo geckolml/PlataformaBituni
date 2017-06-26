@@ -3,10 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = elementIdClick;
 
 var _ErrorHandler = require('../utils/ErrorHandler');
 
-var elementIdClick = function elementIdClick(id) {
+function elementIdClick(id) {
     if (typeof id !== 'string' && typeof id !== 'number') {
         throw new _ErrorHandler.ProtocolError('number or type of arguments don\'t agree with elementIdClick protocol command');
     }
@@ -15,16 +16,15 @@ var elementIdClick = function elementIdClick(id) {
         path: '/session/:sessionId/element/' + id + '/click',
         method: 'POST'
     });
-}; /**
-    *
-    * Click on an element.
-    *
-    * @param {String} ID ID of a WebElement JSON object to route the command to
-    *
-    * @see  https://w3c.github.io/webdriver/webdriver-spec.html#dfn-element-click
-    * @type protocol
-    *
-    */
+} /**
+   *
+   * Click on an element.
+   *
+   * @param {String} ID ID of a WebElement JSON object to route the command to
+   *
+   * @see  https://w3c.github.io/webdriver/webdriver-spec.html#dfn-element-click
+   * @type protocol
+   *
+   */
 
-exports.default = elementIdClick;
 module.exports = exports['default'];

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = forward;
 /**
  * Navigate forwards in the browser history, if possible.
  *
@@ -11,7 +12,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var forward = function forward() {
+function forward() {
     /*!
      * helper for safaridriver which doesn not support forward
      * Reason: "Yikes! Safari history navigation does not work. We can go forward or back,
@@ -25,7 +26,5 @@ var forward = function forward() {
         path: '/session/:sessionId/forward',
         method: 'POST'
     });
-};
-
-exports.default = forward;
+}
 module.exports = exports['default'];

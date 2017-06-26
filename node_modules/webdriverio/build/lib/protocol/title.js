@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = title;
 /**
  *
  * Gets an object containing the current page title.
@@ -19,23 +20,21 @@ Object.defineProperty(exports, "__esModule", {
         //      state: 'success',
         //      sessionId: '0c49951c-eb15-4053-96af-c1ebc79fb8b7',
         //      hCode: 388233301,
-        //      value: 'WebdriverIO - Selenium 2.0 javascript bindings for nodejs',
+        //      value: 'WebdriverIO - WebDriver bindings for Node.js',
         //      class: 'org.openqa.selenium.remote.Response',
         //      status: 0
         //  }
     });
  * </example>
  *
- * @returns {String} The current page title.
+ * @return {String} The current page title.
  *
- * @see  https://w3c.github.io/webdriver/webdriver-spec.html#dfn-get-title
+ * @see  https://w3c.github.io/webdriver/webdriver-spec.html#get-title
  * @type protocol
  *
  */
 
-var title = function title() {
+function title() {
     return this.requestHandler.create('/session/:sessionId/title');
-};
-
-exports.default = title;
+}
 module.exports = exports['default'];

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = openNotifications;
 /**
  *
  * Open the notifications pane on the device.
@@ -17,12 +18,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var openNotifications = function openNotifications() {
+function openNotifications() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/open_notifications',
         method: 'POST'
     });
-};
-
-exports.default = openNotifications;
+}
 module.exports = exports['default'];

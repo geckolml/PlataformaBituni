@@ -4,10 +4,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _ensureClientSideSelectorSupport = require('../helpers/ensureClientSideSelectorSupport');
 
 var _ensureClientSideSelectorSupport2 = _interopRequireDefault(_ensureClientSideSelectorSupport);
@@ -53,7 +49,7 @@ var selectorExecuteAsync = function selectorExecuteAsync(selector, script) {
     if (!Array.isArray(selector)) {
         throw new _ErrorHandler.CommandError('Argument \'selector\' must be string or array of strings.');
     }
-    if (!/string|function/.test(typeof script === 'undefined' ? 'undefined' : (0, _typeof3.default)(script))) {
+    if (!/string|function/.test(typeof script)) {
         throw new _ErrorHandler.CommandError('Argument \'script\' must be a function or string.');
     }
 

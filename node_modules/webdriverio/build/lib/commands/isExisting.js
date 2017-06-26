@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  * @alias browser.isExisting
  * @param   {String}             selector  DOM-element
- * @returns {Boolean|Boolean[]}            true if element(s)* [is|are] existing
+ * @return {Boolean|Boolean[]}            true if element(s)* [is|are] existing
  * @uses protocol/elements
  * @type state
  *

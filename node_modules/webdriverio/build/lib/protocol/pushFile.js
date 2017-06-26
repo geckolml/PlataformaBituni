@@ -3,10 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = pushFile;
 
 var _ErrorHandler = require('../utils/ErrorHandler');
 
-var pushFile = function pushFile(path, base64Data) {
+function pushFile(path, base64Data) {
     if (typeof path !== 'string' || typeof base64Data !== 'string') {
         throw new _ErrorHandler.ProtocolError('pushFile requires two parameters (path, base64Data) from type string');
     }
@@ -18,23 +19,22 @@ var pushFile = function pushFile(path, base64Data) {
         path: path,
         data: base64Data
     });
-}; /**
-    *
-    * Pushes a file to the device.
-    *
-    * <example>
-       :pushFile.js
-       var data = new Buffer("Hello World").toString('base64'))
-       browser.pushFile('/data/local/tmp/file.txt', data)
-    * </example>
-    *
-    * @param {String} path  local path to file
-    *
-    * @see  https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/appium-bindings.md#push-file
-    * @type mobile
-    * @for ios, android
-    *
-    */
+} /**
+   *
+   * Pushes a file to the device.
+   *
+   * <example>
+      :pushFile.js
+      var data = new Buffer("Hello World").toString('base64'))
+      browser.pushFile('/data/local/tmp/file.txt', data)
+   * </example>
+   *
+   * @param {String} path  local path to file
+   *
+   * @see  https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/appium-bindings.md#push-file
+   * @type mobile
+   * @for ios, android
+   *
+   */
 
-exports.default = pushFile;
 module.exports = exports['default'];

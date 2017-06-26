@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = shake;
 /**
  *
  * Perform a shake action on the device.
@@ -18,12 +19,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var shake = function shake() {
+function shake() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/shake',
         method: 'POST'
     });
-};
-
-exports.default = shake;
+}
 module.exports = exports['default'];

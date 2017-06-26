@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = closeApp;
 /**
  *
  * Close the given application.
@@ -18,12 +19,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var closeApp = function closeApp() {
+function closeApp() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/app/close',
         method: 'POST'
     });
-};
-
-exports.default = closeApp;
+}
 module.exports = exports['default'];

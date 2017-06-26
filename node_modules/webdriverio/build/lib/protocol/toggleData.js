@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = toggleData;
 /**
  *
  * Switch the state (enabled/disabled) of data service.
@@ -17,12 +18,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var toggleData = function toggleData() {
+function toggleData() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/toggle_data',
         method: 'POST'
     });
-};
-
-exports.default = toggleData;
+}
 module.exports = exports['default'];

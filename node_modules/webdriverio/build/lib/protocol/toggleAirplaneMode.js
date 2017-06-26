@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = toggleAirplaneMode;
 /**
  *
  * Switch the state (enabled/disabled) of airplane mode.
@@ -17,12 +18,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var toggleAirplaneMode = function toggleAirplaneMode() {
+function toggleAirplaneMode() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/toggle_airplane_mode',
         method: 'POST'
     });
-};
-
-exports.default = toggleAirplaneMode;
+}
 module.exports = exports['default'];

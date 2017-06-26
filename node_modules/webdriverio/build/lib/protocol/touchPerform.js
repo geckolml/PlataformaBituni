@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = touchPerform;
 /**
  *
  * Performs a specific touch action. The action object need to contain the action
@@ -39,12 +40,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var touchPerform = function touchPerform(actions) {
+function touchPerform(actions) {
     return this.requestHandler.create({
         path: '/session/:sessionId/touch/perform',
         method: 'POST'
     }, { actions: actions });
-};
-
-exports.default = touchPerform;
+}
 module.exports = exports['default'];

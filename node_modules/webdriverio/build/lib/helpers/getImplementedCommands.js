@@ -23,7 +23,7 @@ var COMMAND_TYPES = ['protocol', 'commands'];
 /**
  * helper to find all implemented commands
  *
- * @returns {String[]} list of implemented command names
+ * @return {String[]} list of implemented command names
  */
 var getImplementedCommands = function getImplementedCommands() {
     var commands = {};

@@ -8,10 +8,6 @@ var _stringify = require('babel-runtime/core-js/json/stringify');
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
 var _keys = require('babel-runtime/core-js/object/keys');
 
 var _keys2 = _interopRequireDefault(_keys);
@@ -44,14 +40,11 @@ var _sanitize2 = _interopRequireDefault(_sanitize);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var BANNER = '\n' + _constants.COLORS.yellow + '=======================================================================================' + _constants.COLORS.reset + '\nSelenium 2.0 / webdriver protocol bindings implementation with helper commands in nodejs.\nFor a complete list of commands, visit ' + _constants.COLORS.lime + 'http://webdriver.io/api.html' + _constants.COLORS.reset + '.\n' + _constants.COLORS.yellow + '=======================================================================================' + _constants.COLORS.reset + '\n';
-
 /**
  * Logger module
  *
  * A Logger helper with fancy colors
  */
-
 var Logger = function () {
     function Logger(options, eventHandler) {
         var _this = this;
@@ -79,14 +72,6 @@ var Logger = function () {
             });
         }
 
-        /**
-         * print welcome message
-         */
-        if (this.logLevel !== 'silent' && this.logLevel !== 'error' && !this.infoHasBeenShown) {
-            this.write(BANNER);
-            this.infoHasBeenShown = true;
-        }
-
         // register event handler to log command events
         eventHandler.on('command', function (data) {
             if (_this.logLevel === 'command' || _this.logLevel === 'verbose') {
@@ -106,8 +91,8 @@ var Logger = function () {
         // register event handler to log result events
         eventHandler.on('result', function (data) {
             // only log result events if they got executed successfully
-            if (data.body && data.body.status === 0 && (_this.logLevel === 'result' || _this.logLevel === 'verbose')) {
-                _this.result((0, _typeof3.default)(data.body.value) ? data.body.value : data.body.orgStatusMessage);
+            if (data.body && data.body.value && (_this.logLevel === 'result' || _this.logLevel === 'verbose')) {
+                _this.result(data.body.value ? data.body.value : data.body.orgStatusMessage);
             }
         });
 
@@ -170,7 +155,7 @@ var Logger = function () {
             if (typeof options.logOutput === 'string') {
                 this.writeStream = this.getLogfile(options.desiredCapabilities, options.logOutput);
                 this.logLevel = this.logLevel === 'silent' ? 'verbose' : this.logLevel;
-            } else if ((0, _typeof3.default)(options.logOutput) === 'object' && options.logOutput.writable) {
+            } else if (typeof options.logOutput === 'object' && options.logOutput.writable) {
                 this.writeStream = options.logOutput;
                 this.logLevel = this.logLevel === 'silent' ? 'verbose' : this.logLevel;
             }

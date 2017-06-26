@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 /**
  *
- * Returns a list of previous called commands + their arguments.
+ * Returns a list of previous called commands + their arguments and execution timestamp.
  *
  * <example>
     :getCommandHistoryAsync.js
@@ -18,11 +18,12 @@ Object.defineProperty(exports, "__esModule", {
         .getCommandHistory().then(function(history){
             console.log(history);
             // outputs:
-            // [ { name: 'init', args: [] },
-            //   { name: 'url', args: [ 'http://www.google.com' ] },
-            //   { name: 'click', args: [ 'body' ] },
+            // [ { name: 'init', args: [], timestamp: 1487078962707 },
+            //   { name: 'url', args: [ 'http://www.google.com' ], timestamp: 1487078962707 },
+            //   { name: 'click', args: [ 'body' ], timestamp: 1487078962707 },
             //   { name: 'element',
             //     args: [ 'body' ],
+            //     timestamp: 1487078962707,
             //     result:
             //      { state: 'success',
             //        sessionId: 'c2aea856-ba18-48c0-8745-aa292f6394bc',
@@ -33,6 +34,7 @@ Object.defineProperty(exports, "__esModule", {
             //        selector: 'body' } },
             //   { name: 'elementIdClick',
             //     args: [ '0' ],
+            //     timestamp: 1487078962707,
             //     result:
             //      { state: 'success',
             //        sessionId: 'c2aea856-ba18-48c0-8745-aa292f6394bc',
@@ -40,9 +42,10 @@ Object.defineProperty(exports, "__esModule", {
             //        value: null,
             //        class: 'org.openqa.selenium.remote.Response',
             //        status: 0 } },
-            //   { name: 'addValue', args: [ '#lst-ib', 'webdriverio' ] },
+            //   { name: 'addValue', args: [ '#lst-ib', 'webdriverio' ], timestamp: 1487078962707 },
             //   { name: 'elements',
             //     args: [ '#lst-ib' ],
+            //     timestamp: 1487078962707,
             //     result:
             //      { state: 'success',
             //        sessionId: 'c2aea856-ba18-48c0-8745-aa292f6394bc',
@@ -53,6 +56,7 @@ Object.defineProperty(exports, "__esModule", {
             //        selector: '#lst-ib' } },
             //   { name: 'elementIdValue',
             //     args: [ '1', 'webdriverio' ],
+            //     timestamp: 1487078962707,
             //     result:
             //      { state: 'success',
             //        sessionId: 'c2aea856-ba18-48c0-8745-aa292f6394bc',
@@ -60,13 +64,13 @@ Object.defineProperty(exports, "__esModule", {
             //        value: null,
             //        class: 'org.openqa.selenium.remote.Response',
             //        status: 0 } },
-            //   { name: 'pause', args: [ 2000 ] } ]
+            //   { name: 'pause', args: [ 2000 ], timestamp: 1487078962707 } ]
         })
         .end();
  * </example>
  *
  * @alias browser.getCommandHistory
- * @returns {Object[]} list of recent called commands + their arguments
+ * @return {Object[]} list of recent called commands + their arguments
  * @type utility
  *
  */

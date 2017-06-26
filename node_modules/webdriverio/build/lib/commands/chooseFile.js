@@ -60,9 +60,9 @@ var chooseFile = function chooseFile(selector, localPath) {
     }
 
     return new _promise2.default(function (resolve, reject) {
-        _fs2.default.exists(localPath, function (exists) {
+        _fs2.default.stat(localPath, function (err) {
             /* istanbul ignore next */
-            if (!exists) {
+            if (err) {
                 return reject(new _ErrorHandler.CommandError('File to upload does not exists on your system'));
             }
 

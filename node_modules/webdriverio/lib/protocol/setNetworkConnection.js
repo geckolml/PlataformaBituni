@@ -2,9 +2,9 @@
  *
  * Set network connection.<br>
  * Types:<br>
- * 	- airplane mode
- * 	- wifi on
- * 	- data on
+ *  - airplane mode
+ *  - wifi on
+ *  - data on
  *
  * These properties behave like a bitmask so if you set the network connection to 0
  * everything will get turned off. However if you for example set the network connection
@@ -34,7 +34,7 @@
 
 import { ProtocolError } from '../utils/ErrorHandler'
 
-let setNetworkConnection = function (type) {
+export default function setNetworkConnection (type) {
     if (typeof type !== 'number') {
         throw new ProtocolError('Number or type of arguments don\'t agree with setNetworkConnection protocol command.')
     } else if (type > 6 || type < 0) {
@@ -52,5 +52,3 @@ let setNetworkConnection = function (type) {
         }
     })
 }
-
-export default setNetworkConnection

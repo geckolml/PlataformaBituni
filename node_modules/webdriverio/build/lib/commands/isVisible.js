@@ -42,7 +42,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  *
  * @alias browser.isVisible
  * @param   {String}             selector  DOM-element
- * @returns {Boolean|Boolean[]}            true if element(s)* [is|are] visible
+ * @return {Boolean|Boolean[]}            true if element(s)* [is|are] visible
  * @uses protocol/elements, protocol/elementIdDisplayed
  * @type state
  *

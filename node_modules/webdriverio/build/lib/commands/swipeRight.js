@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  * @alias browser.swipeRight
  * @param {String} selector  element to swipe on
+ * @param {Number=} xoffset    x offset of swipe gesture (in pixels or relative units)
  * @param {Number} speed     time (in seconds) to spend performing the swipe
  * @uses mobile/swipe
  * @type mobile

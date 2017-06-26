@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = getNetworkConnection;
 
 var _deepmerge = require('deepmerge');
 
@@ -10,7 +11,7 @@ var _deepmerge2 = _interopRequireDefault(_deepmerge);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getNetworkConnection = function getNetworkConnection() {
+function getNetworkConnection() {
     return this.requestHandler.create({
         path: '/session/:sessionId/network_connection',
         method: 'GET'
@@ -24,29 +25,28 @@ var getNetworkConnection = function getNetworkConnection() {
 
         return result;
     });
-}; /**
-    *
-    * Get informations about the current network connection (Data/WIFI/Airplane). The actual
-    * server value will be a number (see `getNetworkConnection.js` example). However WebdriverIO
-    * additional properties to the response object to allow easier assertions (see
-    * `getNetworkConnectionEasier.js` example).
-    *
-    * <example>
-       :getNetworkConnection.js
-       it('should get network connection of Android device', function () {
-           var connection = browser.getNetworkConnection();
-           console.log(connection.value); // returns 6
-           console.log(connection.inAirplaneMode); // returns false
-           console.log(connection.hasWifi); // returns true
-           console.log(connection.hasData); // returns true
-       });
-    * </example>
-    *
-    * @type mobile
-    * @see https://github.com/appium/appium-android-driver/blob/master/lib/commands/network.js#L8-L22
-    * @for android
-    *
-    */
+} /**
+   *
+   * Get informations about the current network connection (Data/WIFI/Airplane). The actual
+   * server value will be a number (see `getNetworkConnection.js` example). However WebdriverIO
+   * additional properties to the response object to allow easier assertions (see
+   * `getNetworkConnectionEasier.js` example).
+   *
+   * <example>
+      :getNetworkConnection.js
+      it('should get network connection of Android device', function () {
+          var connection = browser.getNetworkConnection();
+          console.log(connection.value); // returns 6
+          console.log(connection.inAirplaneMode); // returns false
+          console.log(connection.hasWifi); // returns true
+          console.log(connection.hasData); // returns true
+      });
+   * </example>
+   *
+   * @type mobile
+   * @see https://github.com/appium/appium-android-driver/blob/master/lib/commands/network.js#L8-L22
+   * @for android
+   *
+   */
 
-exports.default = getNetworkConnection;
 module.exports = exports['default'];

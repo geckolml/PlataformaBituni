@@ -28,7 +28,7 @@ var TIMEOUT_ERROR = 'timeout';
  * @param {Function} fn - function that returns promise. will execute every tick
  * @param {Boolean} leading - should be function invoked on start
  * @param {Boolean} isSync - true if test runner runs commands synchronously
- * @returns {promise}
+ * @return {promise} Promise-based Timer.
  */
 
 var Timer = function () {
@@ -85,7 +85,7 @@ var Timer = function () {
                     return;
                 }
 
-                var reason = _this2.lastError || TIMEOUT_ERROR;
+                var reason = _this2.lastError || new Error(TIMEOUT_ERROR);
                 _this2._reject(reason);
                 _this2.stop();
             }, this._timeout);
@@ -148,7 +148,7 @@ var Timer = function () {
                 this._timeoutId = setTimeout(this.tick.bind(this), delay);
             } else {
                 this.stopMain();
-                var reason = this.lastError || TIMEOUT_ERROR;
+                var reason = this.lastError || new Error(TIMEOUT_ERROR);
                 this._reject(reason);
             }
         }

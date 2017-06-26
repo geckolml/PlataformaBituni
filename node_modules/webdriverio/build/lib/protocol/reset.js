@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = reset;
 /**
  *
  * Reset the device by clearing the device un- and reinstalling app package (if existing).
@@ -18,12 +19,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var reset = function reset() {
+function reset() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/app/reset',
         method: 'POST'
     });
-};
-
-exports.default = reset;
+}
 module.exports = exports['default'];

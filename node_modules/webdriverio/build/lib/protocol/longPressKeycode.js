@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = longPressKeycode;
 /**
  *
  * Press a particular key code on the device.
@@ -22,12 +23,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var longPressKeycode = function longPressKeycode(keycode, metastate) {
+function longPressKeycode(keycode, metastate) {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/long_press_keycode',
         method: 'POST'
     }, { keycode: keycode, metastate: metastate });
-};
-
-exports.default = longPressKeycode;
+}
 module.exports = exports['default'];

@@ -3,10 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = setNetworkConnection;
 
 var _ErrorHandler = require('../utils/ErrorHandler');
 
-var setNetworkConnection = function setNetworkConnection(type) {
+function setNetworkConnection(type) {
     if (typeof type !== 'number') {
         throw new _ErrorHandler.ProtocolError('Number or type of arguments don\'t agree with setNetworkConnection protocol command.');
     } else if (type > 6 || type < 0) {
@@ -23,39 +24,38 @@ var setNetworkConnection = function setNetworkConnection(type) {
             type: type
         }
     });
-}; /**
-    *
-    * Set network connection.<br>
-    * Types:<br>
-    * 	- airplane mode
-    * 	- wifi on
-    * 	- data on
-    *
-    * These properties behave like a bitmask so if you set the network connection to 0
-    * everything will get turned off. However if you for example set the network connection
-    * to 4 it will disable the airplane mode and turn off the wifi so that only data will
-    * be enabled. WebdriverIO provides a simplified interface to set these values without
-    * calculating bitmasks.
-    *
-    * Note: if you have airplane mode enabled you can't have wifi or data be enabled too
-    * (for obvious reasons)
-    *
-    * <example>
-       :setNetworkConnection.js
-       it('should emulate network connection', function () {
-           browser.setNetworkConnection(0) // airplane mode off, wifi off, data off
-           browser.setNetworkConnection(1) // airplane mode on, wifi off, data off
-           browser.setNetworkConnection(2) // airplane mode off, wifi on, data off
-           browser.setNetworkConnection(4) // airplane mode off, wifi off, data on
-           browser.setNetworkConnection(6) // airplane mode off, wifi on, data on
-       });
-    * </example>
-    *
-    * @type mobile
-    * @for selendroid
-    * @see https://github.com/appium/appium-android-driver/blob/master/lib/commands/network.js#L24-L46
-    *
-    */
+} /**
+   *
+   * Set network connection.<br>
+   * Types:<br>
+   *  - airplane mode
+   *  - wifi on
+   *  - data on
+   *
+   * These properties behave like a bitmask so if you set the network connection to 0
+   * everything will get turned off. However if you for example set the network connection
+   * to 4 it will disable the airplane mode and turn off the wifi so that only data will
+   * be enabled. WebdriverIO provides a simplified interface to set these values without
+   * calculating bitmasks.
+   *
+   * Note: if you have airplane mode enabled you can't have wifi or data be enabled too
+   * (for obvious reasons)
+   *
+   * <example>
+      :setNetworkConnection.js
+      it('should emulate network connection', function () {
+          browser.setNetworkConnection(0) // airplane mode off, wifi off, data off
+          browser.setNetworkConnection(1) // airplane mode on, wifi off, data off
+          browser.setNetworkConnection(2) // airplane mode off, wifi on, data off
+          browser.setNetworkConnection(4) // airplane mode off, wifi off, data on
+          browser.setNetworkConnection(6) // airplane mode off, wifi on, data on
+      });
+   * </example>
+   *
+   * @type mobile
+   * @for selendroid
+   * @see https://github.com/appium/appium-android-driver/blob/master/lib/commands/network.js#L24-L46
+   *
+   */
 
-exports.default = setNetworkConnection;
 module.exports = exports['default'];

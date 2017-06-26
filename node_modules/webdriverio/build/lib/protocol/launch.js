@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = launch;
 /**
  *
  * Launch the session for the desired capabilities. Note that this is the companion
@@ -24,12 +25,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var launch = function launch() {
+function launch() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/app/launch',
         method: 'POST'
     });
-};
-
-exports.default = launch;
+}
 module.exports = exports['default'];

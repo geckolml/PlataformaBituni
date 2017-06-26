@@ -38,7 +38,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * </example>
  *
  * @alias browser.getGridNodeDetails
- * @uses protocol/gridTestSession, protocol/gridProxyDetails
+ * @uses grid/gridTestSession, grid/gridProxyDetails
  * @type grid
  */
 

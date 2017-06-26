@@ -7,20 +7,20 @@
     it('should get the location of one or multiple elements in view', function () {
         browser.url('http://github.com');
 
-        var location = browser.getLocation('.octicon-mark-github');
+        var location = browser.getLocationInView('.octicon-mark-github');
         console.log(location); // outputs: { x: 150, y: 20 }
 
-        var xLocation = browser.getLocation('.octicon-mark-github', 'x')
+        var xLocation = browser.getLocationInView('.octicon-mark-github', 'x')
         console.log(xLocation); // outputs: 150
 
-        var yLocation = browser.getLocation('.octicon-mark-github', 'y')
+        var yLocation = browser.getLocationInView('.octicon-mark-github', 'y')
         console.log(yLocation); // outputs: 20
     });
  * </example>
  *
  * @alias browser.getLocationInView
  * @param {String} selector    element with requested position offset
- * @returns {Object|Object[]}  The X and Y coordinates for the element on the page (`{x:number, y:number}`)
+ * @return {Object|Object[]}  The X and Y coordinates for the element on the page (`{x:number, y:number}`)
  *
  * @uses protocol/elements, protocol/elementIdLocationInView
  * @type property

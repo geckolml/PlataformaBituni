@@ -3,13 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _typeof2 = require('babel-runtime/helpers/typeof');
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 /**
  *
  * Protocol bindings to receive or change the position of the browser window.
@@ -36,7 +29,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {String=} windowHandle the window to receive/change the position
  * @param {Object=} position     the X and Y coordinates to position the window at, relative to the upper left corner of the screen
  *
- * @returns {Object} the X and Y coordinates for the window, relative to the upper left corner of the screen (`{x: number, y: number}`)
+ * @return {Object} the X and Y coordinates for the window, relative to the upper left corner of the screen (`{x: number, y: number}`)
  *
  * @see  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidwindowwindowhandleposition
  * @type protocol
@@ -44,6 +37,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 var windowHandlePosition = function windowHandlePosition(windowHandle, position) {
+    var _this = this;
+
     var data = {};
     var requestOptions = {
         method: 'POST'
@@ -59,7 +54,7 @@ var windowHandlePosition = function windowHandlePosition(windowHandle, position)
     /**
      * check if arguments provide proper position parameter
      */
-    if ((typeof position === 'undefined' ? 'undefined' : (0, _typeof3.default)(position)) === 'object' && typeof position.x === 'number' && typeof position.y === 'number') {
+    if (typeof position === 'object' && typeof position.x === 'number' && typeof position.y === 'number') {
         data = position;
 
         /**
@@ -69,7 +64,17 @@ var windowHandlePosition = function windowHandlePosition(windowHandle, position)
         requestOptions.method = 'GET';
     }
 
-    return this.requestHandler.create(requestOptions, data);
+    return this.requestHandler.create(requestOptions, data).catch(function (err) {
+        /**
+         * jsonwire command not supported try webdriver endpoint
+         */
+        if (err.message.match(/did not match a known command/)) {
+            requestOptions.path = '/session/:sessionId/window/rect';
+            return _this.requestHandler.create(requestOptions, data);
+        }
+
+        throw err;
+    });
 };
 
 exports.default = windowHandlePosition;

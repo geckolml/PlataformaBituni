@@ -8,9 +8,42 @@ var _getIterator2 = require('babel-runtime/core-js/get-iterator');
 
 var _getIterator3 = _interopRequireDefault(_getIterator2);
 
-var _ErrorHandler = require('../utils/ErrorHandler');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ *
+ * Wait for an element (selected by css selector) for the provided amount of
+ * milliseconds to be (dis/en)abled. If multiple elements get queryied by given
+ * selector, it returns true (or false if reverse flag is set) if at least one
+ * element is (dis/en)abled.
+ *
+ * <example>
+    :index.html
+    <input type="text" id="username" value="foobar" disabled="disabled"></input>
+    <script type="text/javascript">
+        setTimeout(function () {
+            document.getElementById('username').disabled = false
+        }, 2000);
+    </script>
+
+    :waitForEnabledExample.js
+    it('should detect when element is enabled', function () {
+        browser.waitForEnabled('#username', 3000);
+
+        // same as
+        elem = $('#username');
+        elem.waitForEnabled(3000)
+    });
+ * </example>
+ *
+ * @alias browser.waitForEnabled
+ * @param {String}   selector element to wait for
+ * @param {Number=}  ms       time in ms (default: 500)
+ * @param {Boolean=} reverse  if true it waits for the opposite (default: false)
+ * @uses utility/waitUntil, state/isEnabled
+ * @type utility
+ *
+ */
 
 var waitForEnabled = function waitForEnabled(selector, ms, reverse) {
     var _this = this;
@@ -32,6 +65,9 @@ var waitForEnabled = function waitForEnabled(selector, ms, reverse) {
     if (typeof ms !== 'number') {
         ms = this.options.waitforTimeout;
     }
+
+    var isReversed = reverse ? '' : 'not';
+    var errorMsg = 'element ("' + (selector || this.lastResult.selector) + '") still ' + isReversed + ' enabled after ' + ms + 'ms';
 
     return this.waitUntil(function () {
         return _this.isEnabled(selector).then(function (isEnabled) {
@@ -71,49 +107,8 @@ var waitForEnabled = function waitForEnabled(selector, ms, reverse) {
 
             return result !== reverse;
         });
-    }, ms).catch(function (e) {
-        selector = selector || _this.lastResult.selector;
-
-        if ((0, _ErrorHandler.isTimeoutError)(e)) {
-            var isReversed = reverse ? '' : 'not';
-            throw new _ErrorHandler.WaitUntilTimeoutError('element (' + selector + ') still ' + isReversed + ' enabled after ' + ms + 'ms');
-        }
-        throw e;
-    });
-}; /**
-    *
-    * Wait for an element (selected by css selector) for the provided amount of
-    * milliseconds to be (dis/en)abled. If multiple elements get queryied by given
-    * selector, it returns true (or false if reverse flag is set) if at least one
-    * element is (dis/en)abled.
-    *
-    * <example>
-       :index.html
-       <input type="text" id="username" value="foobar" disabled="disabled"></input>
-       <script type="text/javascript">
-           setTimeout(function () {
-               document.getElementById('username').disabled = false
-           }, 2000);
-       </script>
-   
-       :waitForEnabledExample.js
-       it('should detect when element is enabled', function () {
-           browser.waitForEnabled('#username', 3000);
-   
-           // same as
-           elem = $('#username');
-           elem.waitForEnabled(3000)
-       });
-    * </example>
-    *
-    * @alias browser.waitForEnabled
-    * @param {String}   selector element to wait for
-    * @param {Number=}  ms       time in ms (default: 500)
-    * @param {Boolean=} reverse  if true it waits for the opposite (default: false)
-    * @uses utility/waitUntil, state/isEnabled
-    * @type utility
-    *
-    */
+    }, ms, errorMsg);
+};
 
 exports.default = waitForEnabled;
 module.exports = exports['default'];

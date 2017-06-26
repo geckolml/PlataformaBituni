@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = unlock;
 /**
  *
  * Unlock the device.
@@ -23,12 +24,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var unlock = function unlock() {
+function unlock() {
     return this.requestHandler.create({
         path: '/session/:sessionId/appium/device/unlock',
         method: 'POST'
     });
-};
-
-exports.default = unlock;
+}
 module.exports = exports['default'];

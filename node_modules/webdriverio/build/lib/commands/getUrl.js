@@ -20,7 +20,7 @@ Object.defineProperty(exports, "__esModule", {
  * </example>
  *
  * @alias browser.getUrl
- * @returns {String} current page url
+ * @return {String} current page url
  * @uses protocol/url
  * @type property
  *

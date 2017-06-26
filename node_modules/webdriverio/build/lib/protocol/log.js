@@ -8,6 +8,8 @@ var _promise = require('babel-runtime/core-js/promise');
 
 var _promise2 = _interopRequireDefault(_promise);
 
+exports.default = log;
+
 var _ErrorHandler = require('../utils/ErrorHandler');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -18,7 +20,7 @@ var logTypes = void 0; /**
                         * (Not part of the official Webdriver specification).
                         *
                         * @param {String} type  The [log type](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#log-type). This must be provided.
-                        * @returns {Object[]} The list of [log entries](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#log-entry-json-object)
+                        * @return {Object[]} The list of [log entries](https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#log-entry-json-object)
                         *
                         * @see  https://github.com/SeleniumHQ/selenium/wiki/JsonWireProtocol#sessionsessionidlog
                         * @type protocol
@@ -32,7 +34,7 @@ function getLogTypes() {
     });
 }
 
-var log = function log(type) {
+function log(type) {
     var _this = this;
 
     if (typeof type !== 'string' || type === '') {
@@ -48,7 +50,5 @@ var log = function log(type) {
             type: type
         });
     });
-};
-
-exports.default = log;
+}
 module.exports = exports['default'];

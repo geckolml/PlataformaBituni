@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.default = getDeviceTime;
 /**
  *
  * Captures iOS device date and time (command works only for real devices).
@@ -13,9 +14,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var getDeviceTime = function getDeviceTime() {
+function getDeviceTime() {
   return this.requestHandler.create('/session/:sessionId/appium/device/system_time');
-};
-
-exports.default = getDeviceTime;
+}
 module.exports = exports['default'];

@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = isLocked;
 /**
  *
  * Check whether the device is locked or not.
@@ -23,12 +24,10 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var isLocked = function isLocked() {
+function isLocked() {
     return this.unify(this.requestHandler.create({
         path: '/session/:sessionId/appium/device/is_locked',
         method: 'POST'
     }));
-};
-
-exports.default = isLocked;
+}
 module.exports = exports['default'];

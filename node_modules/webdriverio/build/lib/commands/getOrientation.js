@@ -29,7 +29,7 @@ var getOrientation = function getOrientation() {
     * </example>
     *
     * @alias browser.getOrientation
-    * @returns {String} device orientation (`landscape/portrait`)
+    * @return {String} device orientation (`landscape/portrait`)
     * @uses protocol/orientation
     * @for android, ios
     * @type mobile

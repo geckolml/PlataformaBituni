@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = back;
 /**
  *
  * Navigate backwards in the browser history, if possible.
@@ -12,7 +13,7 @@ Object.defineProperty(exports, "__esModule", {
  *
  */
 
-var back = function back() {
+function back() {
     if (this.desiredCapabilities.browserName === 'safari') {
         /*!
          * helper for safaridriver which doesn not support forward
@@ -26,7 +27,5 @@ var back = function back() {
         path: '/session/:sessionId/back',
         method: 'POST'
     });
-};
-
-exports.default = back;
+}
 module.exports = exports['default'];

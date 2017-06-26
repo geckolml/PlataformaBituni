@@ -45,7 +45,7 @@ var getViewportSize = function getViewportSize(prop) {
     *
     * @alias browser.getViewportSize
     * @param {String} property  if "width" or "height" is set it returns only that property
-    * @returns {Object}  viewport width and height of the browser
+    * @return {Object}  viewport width and height of the browser
     * @uses protocol/execute
     * @type window
     *

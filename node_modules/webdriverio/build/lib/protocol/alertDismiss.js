@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = alertDismiss;
 /**
  *
  * Dismisses the currently displayed alert dialog. For confirm() and prompt()
@@ -19,21 +20,31 @@ Object.defineProperty(exports, "__esModule", {
     });
  * </example>
  *
+ * @throws {RuntimeError}   If no alert is present. The seleniumStack.type parameter will equal 'NoAlertOpenError'.
+ *
  * @see  https://w3c.github.io/webdriver/webdriver-spec.html#dismiss-alert
  * @type protocol
  *
  */
 
-var alertDismiss = function alertDismiss() {
-    // ToDo change path to new route
-    // according to Webdriver specification: /session/{session id}/alert/dismiss
+function alertDismiss() {
+    var _this = this;
+
     var requestOptions = {
         path: '/session/:sessionId/dismiss_alert',
         method: 'POST'
     };
 
-    return this.requestHandler.create(requestOptions);
-};
+    return this.requestHandler.create(requestOptions).catch(function (err) {
+        /**
+         * jsonwire command not supported try webdriver endpoint
+         */
+        if (err.message.match(/did not match a known command/)) {
+            requestOptions.path = '/session/:sessionId/alert/dismiss';
+            return _this.requestHandler.create(requestOptions);
+        }
 
-exports.default = alertDismiss;
+        throw err;
+    });
+}
 module.exports = exports['default'];

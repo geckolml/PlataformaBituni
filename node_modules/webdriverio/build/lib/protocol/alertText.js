@@ -18,7 +18,8 @@ Object.defineProperty(exports, "__esModule", {
  * </example>
  *
  * @param {String=} text  Keystrokes to send to the prompt() dialog.
- * @returns {String}      The text of the currently displayed alert.
+ * @return {String}      The text of the currently displayed alert.
+ * @throws {RuntimeError}   If no alert is present. The seleniumStack.type parameter will equal 'NoAlertOpenError'.
  *
  * @see  https://w3c.github.io/webdriver/webdriver-spec.html#get-alert-text
  * @see  https://w3c.github.io/webdriver/webdriver-spec.html#send-alert-text
@@ -27,21 +28,32 @@ Object.defineProperty(exports, "__esModule", {
  */
 
 var alertText = function alertText(text) {
-    // ToDo change path to new route
-    // according to Webdriver specification: /session/{session id}/alert/text
-    var requestOptions = '/session/:sessionId/alert_text';
+    var _this = this;
+
+    var requestOptions = {
+        path: '/session/:sessionId/alert_text',
+        method: 'GET'
+    };
     var data = {};
 
     if (typeof text === 'string') {
-        requestOptions = {
-            path: requestOptions,
-            method: 'POST'
-        };
-
-        data = { text: text };
+        requestOptions.method = 'POST';
+        data.text = text;
     }
 
-    return this.unify(this.requestHandler.create(requestOptions, data), {
+    var request = this.requestHandler.create(requestOptions, data).catch(function (err) {
+        /**
+         * jsonwire command not supported try webdriver endpoint
+         */
+        if (err.message.match(/did not match a known command/)) {
+            requestOptions.path = '/session/:sessionId/alert/text';
+            return _this.requestHandler.create(requestOptions, data);
+        }
+
+        throw err;
+    });
+
+    return this.unify(request, {
         extractValue: true
     });
 };

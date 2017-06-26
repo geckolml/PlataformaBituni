@@ -19,7 +19,7 @@ Object.defineProperty(exports, "__esModule", {
  * </example>
  *
  * @alias browser.getSource
- * @returns {String} source code of current website
+ * @return {String} source code of current website
  * @uses protocol/source
  * @type property
  *
